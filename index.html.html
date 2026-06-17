@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ирина Болтрик — AI-автоматизация для онлайн-школ</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:       #1D9E75;
+    --teal-light: #F0FAF5;
+    --teal-mid:   #9FE1CB;
+    --teal-dark:  #085041;
+    --dark:       #2C2C2A;
+    --warm-white: #F5F4F0;
+    --gray-muted: #888780;
+    --gray-line:  #E0DED8;
+    --font-head:  'Montserrat', sans-serif;
+    --font-body:  'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-white);
+    color: var(--dark);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(245,244,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-line);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--teal); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+  .nav-cta {
+    background: var(--teal) !important;
+    color: white !important;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85 !important; color: white !important; }
+
+  /* ── LAYOUT ── */
+  section { padding: 96px 2rem; }
+  .container { max-width: 860px; margin: 0 auto; }
+  .container-wide { max-width: 1040px; margin: 0 auto; }
+
+  /* ── HERO ── */
+  #hero {
+    padding-top: 140px;
+    padding-bottom: 96px;
+    background: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--teal);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--gray-muted);
+    max-width: 520px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 28px;
+    border-radius: 28px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.87; transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--dark);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 28px;
+    border-radius: 28px;
+    border: 1.5px solid var(--gray-line);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--teal); background: var(--teal-light); }
+
+  .hero-stat-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--gray-line);
+    flex-wrap: wrap;
+  }
+  .hero-stat-num {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-num span { color: var(--teal); }
+  .hero-stat-label {
+    font-size: 13px;
+    color: var(--gray-muted);
+  }
+
+  /* ── PROBLEM ── */
+  #problem { background: var(--teal-light); }
+  .problem-quote {
+    border-left: 4px solid var(--teal);
+    padding-left: 28px;
+    margin-bottom: 48px;
+  }
+  .problem-quote p {
+    font-family: var(--font-head);
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 600;
+    color: var(--teal-dark);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .pain-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px 22px;
+    border: 1px solid rgba(29,158,117,0.15);
+  }
+  .pain-card p {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.55;
+  }
+  .pain-card p::before {
+    content: '— ';
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: var(--warm-white); }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: var(--font-head);
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--gray-muted);
+    max-width: 480px;
+    margin-bottom: 56px;
+    line-height: 1.65;
+  }
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--gray-line);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--teal);
+    padding-top: 3px;
+  }
+  .step-title {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: var(--gray-muted);
+    line-height: 1.6;
+  }
+
+  /* ── RESULT ── */
+  #result {
+    background: var(--dark);
+    color: white;
+  }
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 56px;
+  }
+  .result-cell {
+    background: var(--dark);
+    padding: 32px 28px;
+  }
+  .result-big {
+    font-family: var(--font-head);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--teal-mid);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .result-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.55;
+  }
+  #result .section-label { color: var(--teal-mid); }
+  #result .section-title { color: white; }
+  #result .section-sub { color: rgba(255,255,255,0.5); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--warm-white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .about-visual {
+    background: var(--teal-light);
+    border-radius: 20px;
+    padding: 40px 36px;
+    border: 1px solid rgba(29,158,117,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--teal);
+  }
+  .about-name {
+    font-family: var(--font-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 4px;
+  }
+  .about-role {
+    font-size: 13px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--teal-dark);
+    background: white;
+    border: 1px solid rgba(29,158,117,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+  }
+  .about-text p {
+    font-size: 15px;
+    color: var(--gray-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--dark); font-weight: 500; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--teal-light); }
+  .faq-list { margin-top: 48px; }
+  .faq-item {
+    background: white;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(29,158,117,0.1);
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 22px 24px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.4;
+  }
+  .faq-q .arrow {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s, background 0.2s;
+    font-size: 12px;
+    color: var(--teal);
+  }
+  .faq-item.open .arrow { transform: rotate(180deg); background: var(--teal); color: white; }
+  .faq-a {
+    display: none;
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--gray-muted);
+    line-height: 1.65;
+    border-top: 1px solid var(--gray-line);
+    padding-top: 16px;
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ── CTA ── */
+  #cta {
+    background: var(--teal);
+    text-align: center;
+    padding: 96px 2rem;
+  }
+  #cta .section-label { color: rgba(255,255,255,0.6); }
+  #cta .section-title { color: white; max-width: 560px; margin: 0 auto 16px; }
+  .cta-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .btn-white {
+    background: white;
+    color: var(--teal);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 28px;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.16); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 40px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 16px;
+  }
+  .footer-logo {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--teal-mid); }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ── MOBILE ── */
+  .nav-hamburger { display: none; }
+  @media (max-width: 640px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    .nav-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    section { padding: 72px 1.25rem; }
+    .hero-stat-row { gap: 28px; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ИБ<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#problem">Проблема</a></li>
+    <li><a href="#how">Как работает</a></li>
+    <li><a href="#result">Результат</a></li>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#faq">Вопросы</a></li>
+    <li><a href="https://t.me/iraboltrik" class="nav-cta" target="_blank" rel="noopener">Написать ⚡</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="this.closest('nav').querySelector('.nav-links').style.display='flex'" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow">AI-автоматизация для онлайн-школ</p>
+    <h1 class="hero-title">Твои студенты<br>получают ответ <em>мгновенно.</em><br>Ты об этом не думаешь.</h1>
+    <p class="hero-sub">RAG-агент с базой знаний твоей школы — отвечает на типовые вопросы, фиксирует лиды в CRM и работает в 2 ночи без выходных.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/iraboltrik" class="btn-primary" target="_blank" rel="noopener">Показать демо за 15 минут</a>
+      <a href="#how" class="btn-ghost">Как это работает →</a>
+    </div>
+    <div class="hero-stat-row">
+      <div>
+        <div class="hero-stat-num"><span>2–3</span> ч</div>
+        <div class="hero-stat-label">в день экономит бот<br>вместо менеджера</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span>3</span> сек</div>
+        <div class="hero-stat-label">среднее время ответа<br>AI-агента</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span>24/7</span></div>
+        <div class="hero-stat-label">без выходных и<br>больничных</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <p class="section-label">Знакомо?</p>
+    <div class="problem-quote">
+      <p>«Я буквально отвечаю одно и то же по 20 раз в день. Хочу масштабироваться — но каждый новый студент это больше моего времени»</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card"><p>Менеджер уволился — и все знания ушли вместе с ним</p></div>
+      <div class="pain-card"><p>Студент написал в 21:00. Менеджер ответил в 11:00. Студент уже попросил возврат</p></div>
+      <div class="pain-card"><p>В момент запуска хаос: я сам лезу в переписки в 11 вечера</p></div>
+      <div class="pain-card"><p>Нанял сотрудника — он делает не то, переделываю сам</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="container">
+    <p class="section-label">Как это работает</p>
+    <h2 class="section-title">От брифа до живого бота — за одну неделю</h2>
+    <p class="section-sub">Ты только отвечаешь на вопросы про свой бизнес. Всё остальное — на моей стороне.</p>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <p class="step-title">Разбор задачи за 15 минут</p>
+          <p class="step-desc">Смотрим демо, обсуждаем твою школу. Ты рассказываешь что и как — я слушаю и задаю вопросы. Никакого технического птичьего языка.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <p class="step-title">Ты заполняешь базу знаний</p>
+          <p class="step-desc">Программа, цены, условия, частые вопросы — собираю в структурированный документ. Ты проверяешь и согласовываешь. Бот будет отвечать только из этого.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <p class="step-title">Сборка и тест</p>
+          <p class="step-desc">Собираю RAG-агента на n8n, подключаю к Telegram, интегрирую с CRM или таблицей. Тестируем вместе — проверяем каждый сценарий.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <p class="step-title">Запуск + две недели поддержки</p>
+          <p class="step-desc">Бот уходит в продакшн. Две недели я рядом — отвечаю на вопросы, дорабатываю базу по первым диалогам.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section id="result">
+  <div class="container">
+    <p class="section-label">Что получаешь</p>
+    <h2 class="section-title">Бизнес не останавливается<br>когда ты не онлайн</h2>
+    <p class="section-sub">Бот знает именно твой бизнес — не шаблонные ответы, а реальную базу знаний твоей школы.</p>
+    <div class="result-grid">
+      <div class="result-cell">
+        <div class="result-big">60–70%</div>
+        <p class="result-desc">типовых вопросов<br>закрывает бот вместо менеджера</p>
+      </div>
+      <div class="result-cell">
+        <div class="result-big">∞</div>
+        <p class="result-desc">не болеет, не увольняется,<br>не забывает что говорил вчера</p>
+      </div>
+      <div class="result-cell">
+        <div class="result-big">CRM</div>
+        <p class="result-desc">контакты лидов автоматически<br>попадают в твою таблицу</p>
+      </div>
+      <div class="result-cell">
+        <div class="result-big">2 нед</div>
+        <p class="result-desc">поддержки в подарок<br>к каждому проекту</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <p class="about-name">Ирина Болтрик</p>
+        <p class="about-role">AI-автоматизация · n8n · RAG-агенты</p>
+        <p style="font-size:14px;color:#0F6E56;line-height:1.6;">Собираю AI-ботов с базой знаний для онлайн-школ и экспертов. Не продаю технологию — решаю конкретную задачу бизнеса.</p>
+        <div class="about-tags">
+          <span class="tag">n8n</span>
+          <span class="tag">Telegram-боты</span>
+          <span class="tag">RAG-агенты</span>
+          <span class="tag">CRM-интеграции</span>
+          <span class="tag">GetCourse</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>Начинала с кнопочных ботов — быстро поняла, что это не решение. Кнопочный бот раздражает клиентов, потому что не понимает живых вопросов.</p>
+        <p>Перешла на <strong>AI-агентов с базой знаний</strong> — бот отвечает своими словами, но только из того, что ты ему согласовал. Не фантазирует, не галлюцинирует.</p>
+        <p>Мне важно одно: чтобы решение <strong>реально работало</strong> в твоём бизнесе, а не просто выглядело красиво в демо.</p>
+        <div style="margin-top: 28px;">
+          <a href="https://t.me/iraboltrik" class="btn-primary" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <p class="section-label">Частые вопросы</p>
+    <h2 class="section-title">Что спрашивают перед покупкой</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          Это сложно настроить — мне придётся разбираться самому?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Нет. Настройка полностью на моей стороне. Ты только отвечаешь на вопросы про свой бизнес — программа, цены, условия, частые вопросы. Всё остальное делаю я.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          А вдруг бот ответит что-то не то и испортит отношения со студентами?
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Бот отвечает только из базы знаний, которую ты сам согласовываешь. Если не знает ответа — говорит «уточните у менеджера» и передаёт диалог живому человеку. Никаких выдуманных ответов.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          Это дорого. Не факт что окупится.
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Если час твоего времени или менеджера стоит хотя бы 1 000 руб., а бот экономит 2 часа в день — он окупается за несколько недель. Разберём твои цифры на демо-звонке.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          У меня специфичная ниша. Стандартный бот не подойдёт.
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Это не шаблон. Каждый бот собирается индивидуально под конкретную школу — с твоими ценами, твоими правилами, твоим языком общения.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          Давайте после следующего запуска.
+          <span class="arrow">▾</span>
+        </button>
+        <div class="faq-a">Именно в момент запуска хаос максимален — и именно тогда бот нужнее всего. Лучше настроить до, чем героически разгребать во время.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container" style="text-align:center">
+    <p class="section-label">Следующий шаг</p>
+    <h2 class="section-title">Покажу демо под твою школу за 15 минут</h2>
+    <p class="cta-sub">Без воды и технического птичьего языка. Смотришь как работает — решаешь нужно ли тебе это.</p>
+    <a href="https://t.me/iraboltrik" class="btn-white" target="_blank" rel="noopener">Написать в Telegram ⚡</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Ирина Болтрик<span> ·</span></a>
+  <ul class="footer-links">
+    <li><a href="https://t.me/iraboltrik" target="_blank" rel="noopener">Telegram</a></li>
+    <li><a href="https://instagram.com/boltich50_" target="_blank" rel="noopener">Instagram</a></li>
+  </ul>
+</footer>
+
+<script>
+function toggle(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
