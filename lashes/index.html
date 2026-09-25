@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ресницы у Дарьи</title>
-<meta name="description" content="Наращивание ресниц — 1800 ₽. Мастер Дарья, район Чистая Слобода. Запись в Telegram.">
+<meta name="description" content="Наращивание ресниц от 1300 ₽: классика и объём 1,5D–4D. Мастер Дарья, район Чистая Слобода. Запись в Telegram.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -161,9 +161,16 @@
   }
   .price:first-child { border-top: 1px solid var(--line); }
   .price-name { flex: 1; }
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 26px;
+    margin: 32px 0 8px;
+  }
   .price-cost {
     font-weight: 600;
-    white-space: nowrap;
+    text-align: right;
+    max-width: 50%;
     color: var(--accent-ink);
     font-variant-numeric: tabular-nums;
   }
@@ -223,9 +230,8 @@
 <section>
   <div class="wrap">
     <h2>Мои работы</h2>
-    <!-- Чтобы поставить свои фото: загрузите их в папку photos
-         с именами work-1.jpg, work-2.jpg, work-3.jpg, work-4.jpg.
-         Пока файла нет, на его месте видна розовая заглушка. -->
+    <!-- Чтобы заменить фото: загрузите новые в папку photos
+         с теми же именами work-1.jpg … work-4.jpg. -->
     <div class="works">
       <div class="work"><img src="photos/work-1.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
       <div class="work"><img src="photos/work-2.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
@@ -240,8 +246,63 @@
     <h2>Цены</h2>
     <ul class="prices">
       <li class="price">
-        <span class="price-name">Наращивание ресниц</span>
+        <span class="price-name">Наращивание уголков</span>
+        <span class="price-cost">1 300 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Классика</span>
+        <span class="price-cost">1 600 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 1,5D</span>
+        <span class="price-cost">1 700 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 2D</span>
         <span class="price-cost">1 800 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 2,5D</span>
+        <span class="price-cost">1 900 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 3D</span>
+        <span class="price-cost">2 000 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 3,5D</span>
+        <span class="price-cost">2 100 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 4D</span>
+        <span class="price-cost">2 200 ₽</span>
+      </li>
+    </ul>
+    <h3>Дополнительно</h3>
+    <ul class="prices">
+      <li class="price">
+        <span class="price-name">LED-наращивание</span>
+        <span class="price-cost">+300 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Мокрый эффект, лучики</span>
+        <span class="price-cost">+200 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Коричневые, цветные реснички</span>
+        <span class="price-cost">+150 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Снятие работы другого мастера</span>
+        <span class="price-cost">200 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Снятие моей работы с последующим наращиванием</span>
+        <span class="price-cost">бесплатно</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Коррекция</span>
+        <span class="price-cost">50% от стоимости наращивания</span>
       </li>
     </ul>
   </div>
