@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ресницы у Дарьи</title>
+<meta name="description" content="Наращивание ресниц от 1300 ₽: классика и объём 1,5D–4D. Мастер Дарья, район Чистая Слобода. Запись в Telegram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:         #FBF7F5;
+    --blush:      #F8EEEC;
+    --rose:       #C7727A;
+    --rose-dark:  #A2525B;
+    --on-rose:    #FFFFFF;
+    --accent-ink: #A2525B;
+    --text:       #3A2E2F;
+    --muted:      #7F6F70;
+    --line:       #EADCD9;
+    --tile-a:     #F3DCD9;
+    --tile-b:     #E9C4C3;
+    --bar:        rgba(251, 247, 245, 0.94);
+    --glow:       rgba(199, 114, 122, 0.35);
+    --font-head:  'Cormorant Garamond', Georgia, serif;
+    --font-body:  'Manrope', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #1F1819; --blush: #2A2022; --rose: #C7727A; --rose-dark: #B2626B;
+      --accent-ink: #E4A3A9; --text: #F3E8E8; --muted: #B7A6A7; --line: #3A2E30;
+      --tile-a: #3A2A2D; --tile-b: #4A3337; --bar: rgba(31, 24, 25, 0.94);
+      --glow: rgba(0, 0, 0, 0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #1F1819; --blush: #2A2022; --rose: #C7727A; --rose-dark: #B2626B;
+    --accent-ink: #E4A3A9; --text: #F3E8E8; --muted: #B7A6A7; --line: #3A2E30;
+    --tile-a: #3A2A2D; --tile-b: #4A3337; --bar: rgba(31, 24, 25, 0.94);
+    --glow: rgba(0, 0, 0, 0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* место под закреплённую кнопку внизу */
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--blush);
+    padding: 56px 0 44px;
+    text-align: center;
+  }
+  .hero-place {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: 1.05;
+    text-wrap: balance;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 24px;
+    border-radius: 16px;
+    background: var(--rose);
+    color: var(--on-rose);
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 6px 18px var(--glow);
+    transition: background 0.2s;
+  }
+  .btn:hover, .btn:active { background: var(--rose-dark); }
+  .btn:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; }
+  .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  /* ── SECTIONS ── */
+  section { padding: 44px 0; }
+  h2 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 1.1;
+    text-wrap: balance;
+    margin-bottom: 20px;
+  }
+
+  /* ── WORKS ── */
+  .works {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .work {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    /* заглушка, пока нет фото */
+    background: linear-gradient(135deg, var(--tile-a), var(--tile-b));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-ink);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .work::before { content: 'Фото скоро'; }
+  .work img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── PRICES ── */
+  .prices { list-style: none; }
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .price:first-child { border-top: 1px solid var(--line); }
+  .price-name { flex: 1; }
+  h3 {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 26px;
+    margin: 32px 0 8px;
+  }
+  .price-cost {
+    font-weight: 600;
+    text-align: right;
+    max-width: 50%;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--blush);
+    text-align: center;
+  }
+  .contact p { color: var(--muted); margin-bottom: 24px; }
+
+  footer {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    padding: 28px 0;
+  }
+
+  /* ── STICKY BUTTON (телефон) ── */
+  .sticky {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 10;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--bar);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+  }
+  .sticky .btn { max-width: 520px; margin: 0 auto; }
+
+  @media (min-width: 700px) {
+    .hero { padding: 88px 0 64px; }
+    section { padding: 64px 0; }
+    .works { gap: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="hero-place">Чистая Слобода</p>
+    <h1>Наращивание ресниц у&nbsp;Дарьи</h1>
+    <p>Выразительный взгляд без туши каждое утро. Запись — в&nbsp;пару сообщений в&nbsp;Telegram.</p>
+    <a class="btn" href="https://t.me/Grlv_1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+      Записаться
+    </a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Мои работы</h2>
+    <!-- Чтобы заменить фото: загрузите новые в папку photos
+         с теми же именами work-1.jpg … work-4.jpg. -->
+    <div class="works">
+      <div class="work"><img src="photos/work-1.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
+      <div class="work"><img src="photos/work-2.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
+      <div class="work"><img src="photos/work-3.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
+      <div class="work"><img src="photos/work-4.jpg" alt="Работа мастера — наращивание ресниц" loading="lazy" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Цены</h2>
+    <ul class="prices">
+      <li class="price">
+        <span class="price-name">Наращивание уголков</span>
+        <span class="price-cost">1 300 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Классика</span>
+        <span class="price-cost">1 600 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 1,5D</span>
+        <span class="price-cost">1 700 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 2D</span>
+        <span class="price-cost">1 800 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 2,5D</span>
+        <span class="price-cost">1 900 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 3D</span>
+        <span class="price-cost">2 000 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 3,5D</span>
+        <span class="price-cost">2 100 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Объём 4D</span>
+        <span class="price-cost">2 200 ₽</span>
+      </li>
+    </ul>
+    <h3>Дополнительно</h3>
+    <ul class="prices">
+      <li class="price">
+        <span class="price-name">LED-наращивание</span>
+        <span class="price-cost">+300 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Мокрый эффект, лучики</span>
+        <span class="price-cost">+200 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Коричневые, цветные реснички</span>
+        <span class="price-cost">+150 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Снятие работы другого мастера</span>
+        <span class="price-cost">200 ₽</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Снятие моей работы с последующим наращиванием</span>
+        <span class="price-cost">бесплатно</span>
+      </li>
+      <li class="price">
+        <span class="price-name">Коррекция</span>
+        <span class="price-cost">50% от стоимости наращивания</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <h2>Запишитесь на удобное время</h2>
+    <p>Напишите мне в Telegram (@Grlv_1) — подберём день и время.<br>Район Чистая Слобода.</p>
+    <a class="btn" href="https://t.me/Grlv_1" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+      Написать в Telegram
+    </a>
+  </div>
+</section>
+
+<footer>Мастер Дарья · Чистая Слобода</footer>
+
+<div class="sticky">
+  <a class="btn" href="https://t.me/Grlv_1" target="_blank" rel="noopener">Записаться</a>
+</div>
+
+</body>
+</html>
